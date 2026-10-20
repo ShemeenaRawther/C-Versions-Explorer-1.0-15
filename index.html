@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C# Versions Explorer — C# 1.0 to C# 15</title>
+<meta name="description" content="Explore C# language versions from C# 1.0 to C# 15 with a searchable, expandable feature tree and Microsoft Learn links.">
+<style>
+  :root { --purple:#512BD4; --purple-dark:#3B1F9E; --lavender:#F3F0FF; --ink:#202124; --muted:#5f6368; --line:#e3e0ee; --surface:#fff; --soft:#f8f7fc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink); background:var(--surface); }
+  .wrap { max-width:1100px; margin:0 auto; padding:22px 16px 36px; }
+  .hero { background:linear-gradient(135deg,var(--lavender),#fff); border:1px solid var(--line); border-radius:18px; padding:22px; margin-bottom:18px; }
+  h1 { margin:0 0 8px; font-size:clamp(1.55rem,4vw,2.2rem); line-height:1.2; color:var(--purple-dark); }
+  .intro { margin:0; color:var(--muted); max-width:760px; }
+  .tools { display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 12px; }
+  #search { flex:1 1 260px; min-width:0; padding:12px 14px; border:1px solid #c9c4d8; border-radius:10px; font:inherit; }
+  button { font:inherit; cursor:pointer; border-radius:10px; padding:10px 13px; border:1px solid var(--line); background:#fff; color:var(--purple-dark); font-weight:650; }
+  button:hover, button:focus-visible { border-color:var(--purple); outline:2px solid #d8ceff; outline-offset:1px; }
+  .hint { color:var(--muted); font-size:.9rem; margin:0 0 14px; }
+  .tree { border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  details.version { border-bottom:1px solid var(--line); background:#fff; }
+  details.version:last-child { border-bottom:0; }
+  details.version > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:14px 16px; font-weight:750; background:#fff; }
+  details.version > summary::-webkit-details-marker { display:none; }
+  details.version > summary::before { content:"▸"; color:var(--purple); font-size:1.15rem; width:16px; }
+  details.version[open] > summary::before { content:"▾"; }
+  details.version > summary:hover { background:var(--soft); }
+  .version-name { color:var(--purple-dark); }
+  .version-meta { margin-left:auto; color:var(--muted); font-weight:500; font-size:.82rem; text-align:right; }
+  .preview { background:#fff4d6; color:#7a4a00; border-radius:6px; padding:2px 7px; font-size:.72rem; font-weight:750; }
+  .feature-list { padding:4px 14px 14px 43px; }
+  details.feature { margin:7px 0; border-left:2px solid #ded6ff; padding-left:10px; }
+  details.feature > summary { cursor:pointer; padding:7px 8px; border-radius:7px; font-weight:650; }
+  details.feature > summary:hover { background:var(--lavender); }
+  .feature-body { padding:0 10px 10px; color:#36333e; }
+  .feature-body p { margin:5px 0 8px; }
+  .feature-body a, .official a { color:var(--purple-dark); text-decoration:underline; text-underline-offset:2px; }
+  .feature-body a:focus-visible, .official a:focus-visible { outline:2px solid var(--purple); outline-offset:2px; }
+  code { background:#f1eff7; border-radius:4px; padding:1px 4px; font-size:.92em; }
+  .empty { display:none; padding:20px; color:var(--muted); }
+  .official { margin-top:16px; padding:14px 16px; border:1px solid var(--line); border-radius:12px; background:var(--soft); }
+  .official strong { display:block; margin-bottom:4px; }
+  .footer { color:var(--muted); font-size:.82rem; margin-top:12px; }
+  .hidden-by-search { display:none !important; }
+  @media (max-width:600px) {
+    .wrap { padding:12px 10px 24px; }
+    .hero { padding:17px; }
+    details.version > summary { padding:12px; gap:7px; }
+    .version-meta { font-size:.75rem; max-width:105px; }
+    .feature-list { padding-left:24px; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="hero">
+    <h1>C# Versions Explorer</h1>
+    <p class="intro">Navigate the evolution of C# from version 1.0 to version 15. Expand a release, open a feature for a quick explanation, or jump to the official Microsoft Learn documentation.</p>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search versions or features (e.g. async, records, LINQ)…" aria-label="Search C# versions and features">
+      <button id="expandAll" type="button">Expand all</button>
+      <button id="collapseAll" type="button">Collapse all</button>
+      <button id="clearSearch" type="button">Clear search</button>
+    </div>
+    <p class="hint">Tip: select a feature name to reveal its summary and documentation link. Search automatically reveals matching branches.</p>
+  </section>
+
+  <section class="tree" id="tree" aria-label="C sharp version tree">
+    <details class="version" open>
+      <summary><span class="version-name">C# 15</span><span class="preview">PREVIEW</span><span class="version-meta">.NET 11 preview</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Union types</summary><div class="feature-body"><p>Represent a value as one of a defined set of alternative types, improving type modelling.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">Microsoft Learn: What's new in C# 15</a></div></details>
+        <details class="feature"><summary>Closed hierarchies</summary><div class="feature-body"><p>Language work for explicitly constrained type hierarchies; check the current preview documentation for design and availability.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">Microsoft Learn: What's new in C# 15</a></div></details>
+        <details class="feature"><summary>Updated unsafe / memory-safety model</summary><div class="feature-body"><p>A preview redesign of unsafe-code rules and contracts. Details may change before final release.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">Microsoft Learn: What's new in C# 15</a></div></details>
+        <details class="feature"><summary>Collection expression arguments</summary><div class="feature-body"><p>Use a leading <code>with(...)</code> element in a collection expression to pass constructor or factory arguments.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">Microsoft Learn: What's new in C# 15</a></div></details>
+        <details class="feature"><summary>Extension indexers</summary><div class="feature-body"><p>Extend a type with indexer-like access without modifying the original type.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">Microsoft Learn: What's new in C# 15</a></div></details>
+        <details class="feature"><summary>Labeled break and continue</summary><div class="feature-body"><p>Give a loop a label and target that loop directly from nested loops.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-15" target="_blank" rel="noopener">Microsoft Learn: What's new in C# 15</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 14</span><span class="version-meta">.NET 10 · 2025</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Extension members</summary><div class="feature-body"><p>Add extension properties, operators, and other supported members as well as extension methods.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-14" target="_blank" rel="noopener">What's new in C# 14</a></div></details>
+        <details class="feature"><summary>Null-conditional assignment</summary><div class="feature-body"><p>Use operators such as <code>customer?.Name = value</code> to assign only when the receiver is non-null.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-14" target="_blank" rel="noopener">What's new in C# 14</a></div></details>
+        <details class="feature"><summary><code>field</code>-backed properties</summary><div class="feature-body"><p>Access a compiler-provided backing field inside a property accessor.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-14" target="_blank" rel="noopener">What's new in C# 14</a></div></details>
+        <details class="feature"><summary>More conversions for <code>Span&lt;T&gt;</code></summary><div class="feature-body"><p>Additional implicit conversions involving <code>Span&lt;T&gt;</code> and <code>ReadOnlySpan&lt;T&gt;</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-14" target="_blank" rel="noopener">What's new in C# 14</a></div></details>
+        <details class="feature"><summary>Partial constructors and events</summary><div class="feature-body"><p>Partial declarations can include constructors and events.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-14" target="_blank" rel="noopener">What's new in C# 14</a></div></details>
+        <details class="feature"><summary>Other updates</summary><div class="feature-body"><p>Modifiers on simple lambda parameters, unbound generic support in <code>nameof</code>, and user-defined compound assignment operators.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-14" target="_blank" rel="noopener">What's new in C# 14</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 13</span><span class="version-meta">.NET 9 · 2024</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary><code>params</code> collections</summary><div class="feature-body"><p><code>params</code> can accept supported collection types, not only arrays.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-13" target="_blank" rel="noopener">What's new in C# 13</a></div></details>
+        <details class="feature"><summary>New lock type and <code>System.Threading.Lock</code> support</summary><div class="feature-body"><p>Improved compiler support for the dedicated lock type.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-13" target="_blank" rel="noopener">What's new in C# 13</a></div></details>
+        <details class="feature"><summary>Escape sequences in string literals</summary><div class="feature-body"><p>Use the <code>\e</code> escape sequence for ESC.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-13" target="_blank" rel="noopener">What's new in C# 13</a></div></details>
+        <details class="feature"><summary>Partial properties and indexers</summary><div class="feature-body"><p>Partial declarations can split property and indexer declarations for scenarios such as source generators.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-13" target="_blank" rel="noopener">What's new in C# 13</a></div></details>
+        <details class="feature"><summary>Ref structs in interfaces and async methods</summary><div class="feature-body"><p>Relaxations enable more scenarios for ref-like types, with restrictions still applying.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-13" target="_blank" rel="noopener">What's new in C# 13</a></div></details>
+        <details class="feature"><summary>Overload resolution priority</summary><div class="feature-body"><p>Attribute-based control over overload preference for library authors.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-13" target="_blank" rel="noopener">What's new in C# 13</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 12</span><span class="version-meta">.NET 8 · 2023</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Primary constructors</summary><div class="feature-body"><p>Declare constructor parameters directly in a class or struct declaration.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-12" target="_blank" rel="noopener">What's new in C# 12</a></div></details>
+        <details class="feature"><summary>Collection expressions</summary><div class="feature-body"><p>Use concise bracket syntax such as <code>int[] numbers = [1, 2, 3];</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-12" target="_blank" rel="noopener">What's new in C# 12</a></div></details>
+        <details class="feature"><summary>Inline arrays</summary><div class="feature-body"><p>Define fixed-length sequences embedded in a struct, useful in low-level and performance-sensitive code.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-12" target="_blank" rel="noopener">What's new in C# 12</a></div></details>
+        <details class="feature"><summary>Alias any type</summary><div class="feature-body"><p><code>using</code> aliases can refer to any type, including tuple, pointer, and other types.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-12" target="_blank" rel="noopener">What's new in C# 12</a></div></details>
+        <details class="feature"><summary>Optional parameters in lambda expressions</summary><div class="feature-body"><p>Lambda parameters can declare default values and parameter arrays.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-12" target="_blank" rel="noopener">What's new in C# 12</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 11</span><span class="version-meta">.NET 7 · 2022</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Raw string literals</summary><div class="feature-body"><p>Write multiline strings and embedded quotes with fewer escape characters.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11" target="_blank" rel="noopener">What's new in C# 11</a></div></details>
+        <details class="feature"><summary>Generic math and static abstract interface members</summary><div class="feature-body"><p>Enable generic algorithms to use operators and static members through interfaces.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11" target="_blank" rel="noopener">What's new in C# 11</a></div></details>
+        <details class="feature"><summary>Required members</summary><div class="feature-body"><p>Require callers to initialize designated members when creating an object.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11" target="_blank" rel="noopener">What's new in C# 11</a></div></details>
+        <details class="feature"><summary>List patterns</summary><div class="feature-body"><p>Match sequences by shape and contents using patterns such as <code>[1, 2, ..]</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11" target="_blank" rel="noopener">What's new in C# 11</a></div></details>
+        <details class="feature"><summary>UTF-8 string literals</summary><div class="feature-body"><p>Use the <code>u8</code> suffix to create UTF-8 data from string literals.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11" target="_blank" rel="noopener">What's new in C# 11</a></div></details>
+        <details class="feature"><summary>Newlines in interpolations and numeric suffix updates</summary><div class="feature-body"><p>Interpolated expressions can span lines; improved literal syntax includes unsigned right shift and native-sized integer support updates.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-11" target="_blank" rel="noopener">What's new in C# 11</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 10</span><span class="version-meta">.NET 6 · 2021</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Global using directives</summary><div class="feature-body"><p>Import namespaces across a project from one source file.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-10" target="_blank" rel="noopener">What's new in C# 10</a></div></details>
+        <details class="feature"><summary>File-scoped namespaces</summary><div class="feature-body"><p>Declare a namespace for an entire file without an extra brace block.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-10" target="_blank" rel="noopener">What's new in C# 10</a></div></details>
+        <details class="feature"><summary>Record structs</summary><div class="feature-body"><p>Define value types with record-style value equality and concise syntax.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-10" target="_blank" rel="noopener">What's new in C# 10</a></div></details>
+        <details class="feature"><summary>Constant interpolated strings</summary><div class="feature-body"><p>Interpolated strings can be constants when their interpolated parts are constant.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-10" target="_blank" rel="noopener">What's new in C# 10</a></div></details>
+        <details class="feature"><summary>Extended property patterns and lambda improvements</summary><div class="feature-body"><p>More concise nested property patterns, natural lambda types, and improved lambda syntax.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-10" target="_blank" rel="noopener">What's new in C# 10</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 9</span><span class="version-meta">.NET 5 · 2020</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Records and init-only setters</summary><div class="feature-body"><p>Records provide value-based equality; <code>init</code> setters allow initialization while limiting later mutation.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-9" target="_blank" rel="noopener">What's new in C# 9</a></div></details>
+        <details class="feature"><summary>Top-level statements</summary><div class="feature-body"><p>Write a simple program without explicitly declaring a <code>Main</code> method or containing class.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-9" target="_blank" rel="noopener">What's new in C# 9</a></div></details>
+        <details class="feature"><summary>Pattern matching enhancements</summary><div class="feature-body"><p>Relational, logical, and parenthesized patterns; improved pattern syntax.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-9" target="_blank" rel="noopener">What's new in C# 9</a></div></details>
+        <details class="feature"><summary>Target-typed <code>new</code> and covariant returns</summary><div class="feature-body"><p>Omit a repeated type in object creation when it is known from context; override methods can return a more derived type.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-9" target="_blank" rel="noopener">What's new in C# 9</a></div></details>
+        <details class="feature"><summary>Native-sized integers and function pointers</summary><div class="feature-body"><p>Language support for <code>nint</code>/<code>nuint</code> and low-level function pointers.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-9" target="_blank" rel="noopener">What's new in C# 9</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 8.0</span><span class="version-meta">.NET Core 3.0 · 2019</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Nullable reference types</summary><div class="feature-body"><p>Express nullability intent for reference types and receive compiler analysis warnings.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-8" target="_blank" rel="noopener">What's new in C# 8</a></div></details>
+        <details class="feature"><summary>Async streams</summary><div class="feature-body"><p>Use <code>IAsyncEnumerable&lt;T&gt;</code> and <code>await foreach</code> to consume asynchronous sequences.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-8" target="_blank" rel="noopener">What's new in C# 8</a></div></details>
+        <details class="feature"><summary>Switch expressions and property patterns</summary><div class="feature-body"><p>Use expression-based switch logic and richer patterns to match object properties.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-8" target="_blank" rel="noopener">What's new in C# 8</a></div></details>
+        <details class="feature"><summary>Default interface methods</summary><div class="feature-body"><p>Interfaces can provide default implementations for members.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-8" target="_blank" rel="noopener">What's new in C# 8</a></div></details>
+        <details class="feature"><summary>Ranges, indices, using declarations</summary><div class="feature-body"><p>New range/index syntax, simplified resource cleanup with <code>using</code> declarations, and null-coalescing assignment.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-8" target="_blank" rel="noopener">What's new in C# 8</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 7.x</span><span class="version-meta">2017–2018</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>C# 7.0 — Tuples, deconstruction, pattern matching</summary><div class="feature-body"><p>Tuple syntax, deconstruction, <code>out var</code>, local functions, discards, and basic pattern matching.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-7" target="_blank" rel="noopener">What's new in C# 7</a></div></details>
+        <details class="feature"><summary>C# 7.1 — Async Main and default literals</summary><div class="feature-body"><p>Support for asynchronous entry points, inferred default literals, and improved tuple names.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-7-1" target="_blank" rel="noopener">What's new in C# 7.1</a></div></details>
+        <details class="feature"><summary>C# 7.2 — Readonly structs and ref readonly</summary><div class="feature-body"><p>More control over ref semantics and readonly value types; also private protected and conditional ref expressions.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-7-2" target="_blank" rel="noopener">What's new in C# 7.2</a></div></details>
+        <details class="feature"><summary>C# 7.3 — Performance and compiler improvements</summary><div class="feature-body"><p>Improved overload resolution, enum/delegate constraints, stackalloc initializers, and safer fixed-field access patterns.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-7-3" target="_blank" rel="noopener">What's new in C# 7.3</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 6.0</span><span class="version-meta">2015</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>String interpolation</summary><div class="feature-body"><p>Embed expressions in strings with <code>$"Hello {name}"</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-6" target="_blank" rel="noopener">What's new in C# 6</a></div></details>
+        <details class="feature"><summary>Null-conditional operator</summary><div class="feature-body"><p>Use <code>?.</code> and <code>?[]</code> to safely access members and indexers when a receiver may be null.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-6" target="_blank" rel="noopener">What's new in C# 6</a></div></details>
+        <details class="feature"><summary>Expression-bodied members and nameof</summary><div class="feature-body"><p>Concise expression bodies for supported members and compile-time names via <code>nameof</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-6" target="_blank" rel="noopener">What's new in C# 6</a></div></details>
+        <details class="feature"><summary>Auto-property initializers and exception filters</summary><div class="feature-body"><p>Initialize auto-properties at declaration and filter exceptions with <code>when</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-6" target="_blank" rel="noopener">What's new in C# 6</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 5.0</span><span class="version-meta">2012</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary><code>async</code> and <code>await</code></summary><div class="feature-body"><p>Write asynchronous workflows in a sequential style using tasks and awaitable operations.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-5" target="_blank" rel="noopener">What's new in C# 5</a></div></details>
+        <details class="feature"><summary>Caller information attributes</summary><div class="feature-body"><p>Capture caller file path, line number, and member name through compiler-provided attributes.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-5" target="_blank" rel="noopener">What's new in C# 5</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 4.0</span><span class="version-meta">2010</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Dynamic binding</summary><div class="feature-body"><p>Defer selected member binding to runtime with the <code>dynamic</code> type.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-4" target="_blank" rel="noopener">What's new in C# 4</a></div></details>
+        <details class="feature"><summary>Named and optional arguments</summary><div class="feature-body"><p>Call methods with named parameters and omit arguments that have default values.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-4" target="_blank" rel="noopener">What's new in C# 4</a></div></details>
+        <details class="feature"><summary>Generic variance and COM interop improvements</summary><div class="feature-body"><p>Covariance and contravariance for generic interfaces/delegates, plus simpler COM interop syntax.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-4" target="_blank" rel="noopener">What's new in C# 4</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 3.0</span><span class="version-meta">2007</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>LINQ and query expressions</summary><div class="feature-body"><p>Language-integrated query syntax for working with data sources.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-3" target="_blank" rel="noopener">What's new in C# 3</a></div></details>
+        <details class="feature"><summary>Lambda expressions and expression trees</summary><div class="feature-body"><p>Compact function expressions and data representations of code expressions.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-3" target="_blank" rel="noopener">What's new in C# 3</a></div></details>
+        <details class="feature"><summary>Extension methods, implicit typing, object/collection initializers</summary><div class="feature-body"><p>Introduced extension methods, <code>var</code>, anonymous types, automatic properties, and concise initialization syntax.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-3" target="_blank" rel="noopener">What's new in C# 3</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 2.0</span><span class="version-meta">2005</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Generics</summary><div class="feature-body"><p>Parameterize types and methods for reusable, strongly typed code.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-2" target="_blank" rel="noopener">What's new in C# 2</a></div></details>
+        <details class="feature"><summary>Nullable value types</summary><div class="feature-body"><p>Represent an underlying value type plus a null state with types such as <code>int?</code>.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-2" target="_blank" rel="noopener">What's new in C# 2</a></div></details>
+        <details class="feature"><summary>Iterators, anonymous methods, partial types</summary><div class="feature-body"><p>Support for <code>yield</code>, anonymous methods, partial classes/structs/interfaces, and other compiler improvements.</p><a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-2" target="_blank" rel="noopener">What's new in C# 2</a></div></details>
+      </div>
+    </details>
+
+    <details class="version">
+      <summary><span class="version-name">C# 1.0 / 1.2</span><span class="version-meta">2002–2003</span></summary>
+      <div class="feature-list">
+        <details class="feature"><summary>Core object-oriented language</summary><div class="feature-body"><p>Classes, structs, interfaces, enums, delegates, events, properties, indexers, arrays, exception handling, attributes, and namespaces.</p><a href="https://learn.microsoft.com/dotnet/csharp/" target="_blank" rel="noopener">C# language documentation</a></div></details>
+        <details class="feature"><summary>Type safety and managed execution</summary><div class="feature-body"><p>Strong typing, garbage-collected managed code, and interoperability with the .NET platform.</p><a href="https://learn.microsoft.com/dotnet/csharp/" target="_blank" rel="noopener">C# language documentation</a></div></details>
+      </div>
+    </details>
+    <div id="empty" class="empty">No matching versions or features. Try a different search term.</div>
+  </section>
+
+  <aside class="official">
+    <strong>Official reference</strong>
+    <a href="https://learn.microsoft.com/dotnet/csharp/whats-new/csharp-version-history" target="_blank" rel="noopener">The history of C# — Microsoft Learn</a>
+    <span> · </span>
+    <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/language-versioning" target="_blank" rel="noopener">Language versioning and framework compatibility</a>
+  </aside>
+  <p class="footer">Learning reference for The .NET Engineer. C# 15 items are preview-era information and may change. Feature lists are a navigation overview, not an exhaustive language specification. Always confirm details in the linked Microsoft documentation.</p>
+</main>
+<script>
+(() => {
+  const search = document.getElementById('search');
+  const versions = [...document.querySelectorAll('details.version')];
+  const features = [...document.querySelectorAll('details.feature')];
+  const empty = document.getElementById('empty');
+
+  function filterTree() {
+    const q = search.value.trim().toLowerCase();
+    let visibleVersions = 0;
+    versions.forEach(version => {
+      const summaryText = version.querySelector(':scope > summary').innerText.toLowerCase();
+      const featureNodes = [...version.querySelectorAll('.feature')];
+      let visibleFeatures = 0;
+      featureNodes.forEach(feature => {
+        const match = !q || feature.innerText.toLowerCase().includes(q) || summaryText.includes(q);
+        feature.classList.toggle('hidden-by-search', !match);
+        if (match) {
+          visibleFeatures++;
+          if (q) feature.open = true;
+        }
+      });
+      const versionMatch = !q || summaryText.includes(q);
+      const show = versionMatch || visibleFeatures > 0;
+      version.classList.toggle('hidden-by-search', !show);
+      if (show) visibleVersions++;
+      if (q && show) version.open = true;
+    });
+    empty.style.display = visibleVersions ? 'none' : 'block';
+  }
+
+  search.addEventListener('input', filterTree);
+  document.getElementById('expandAll').addEventListener('click', () => {
+    versions.forEach(v => { if (!v.classList.contains('hidden-by-search')) v.open = true; });
+    features.forEach(f => { if (!f.classList.contains('hidden-by-search')) f.open = true; });
+  });
+  document.getElementById('collapseAll').addEventListener('click', () => {
+    features.forEach(f => f.open = false);
+    versions.forEach(v => v.open = false);
+  });
+  document.getElementById('clearSearch').addEventListener('click', () => {
+    search.value = '';
+    filterTree();
+    search.focus();
+  });
+})();
+</script>
+</body>
+</html>
